@@ -1,0 +1,59 @@
+version: "3.8"
+
+services:
+
+  automagic_db:
+    container_name: automagic_db
+    image: automagic_db
+    build: 
+      context: ./automagic-db
+      dockerfile: Dockerfile
+    environment:
+      POSTGRES_DB: ${DB_NAME}
+      POSTGRES_USER: ${DB_USERNAME}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+      PGDATA: ${PGDATA}
+    volumes:
+      - ./mounts/automagic_db_data/:/var/lib/postgresql/data/  # Bind mount database data
+    networks:
+      - backend
+    restart: always
+
+  automagic_website:
+    container_name: automagic_website
+    image: automagic_website
+    build: ./automagic-website
+    depends_on:
+      - ${DB_HOSTNAME}
+    volumes:
+      - automagic-stack_static:/website/static/
+      - ./mounts/automagic_media:/website/media/
+    env_file:
+      - .env
+    networks:
+      - frontend
+      - backend
+    restart: always
+
+  server_monitor:
+    container_name: server_monitor
+    image: server_monitor
+    build: ./server-monitor
+    depends_on:
+      - ${DB_HOSTNAME}
+    networks:
+      - backend
+    env_file:
+      - .env
+    restart: always
+
+volumes:
+  automagic-stack_static:
+    name: automagic-stack_static
+
+networks:
+  frontend:
+    name: frontend
+    driver: bridge
+  backend:
+    driver: bridge
