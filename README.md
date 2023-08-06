@@ -47,7 +47,7 @@
 ### Description
 
 This project is a Django web application, serving as a personal portfolio 
-hosted on the domain "automagicdeveloper.com." 
+hosted on the domain "automagicdeveloper.com" 
 The application is designed to showcase the developer's work and accomplishments. 
 
 It consists of several distinct apps:
