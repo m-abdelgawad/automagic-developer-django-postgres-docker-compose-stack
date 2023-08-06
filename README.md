@@ -58,9 +58,9 @@ achievements.
 **Blog:** The blog app allows the developer to share their thoughts, experiences, 
 and insights with the audience.
 
-**App Gallery:** A gallery of developed applications with a beautiful slider.
+**App Gallery:** A gallery of the developed applications with a beautiful slider.
 
-**Insights Dashboard:** A dashboard that analyze the data of published project on the website.
+**Insights Dashboard:** A dashboard that analyzes the data of the published projects on the website.
 
 **Contact:** A contact application with a contact form protected with reCAPTCHA.
 
